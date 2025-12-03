@@ -1,10 +1,30 @@
-import { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { FaGithub, FaEnvelope, FaCode, FaLaptopCode, FaServer, FaRocket, FaStar, FaCog } from 'react-icons/fa';
-import { SiReact, SiNextdotjs, SiTailwindcss, SiJavascript } from 'react-icons/si';
-import TypewriterText from '../components/TypewriterText';
-import { useLanguage } from '../context/LanguageContext';
+import { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
+import { Link } from "react-router-dom";
+import {
+  FaGithub,
+  FaEnvelope,
+  FaCode,
+  FaLaptopCode,
+  FaServer,
+  FaRocket,
+  FaStar,
+  FaCog,
+} from "react-icons/fa";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiJavascript,
+} from "react-icons/si";
+import TypewriterText from "../components/TypewriterText";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Home() {
   const { t, isRTL } = useLanguage();
@@ -13,51 +33,53 @@ export default function Home() {
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   const dynamicTextsFA = [
-    ' متخصص در React، Next.js و فریم‌ورک‌های مدرن JavaScript.',
-    ' مدرس برنامه‌نویسی وب در آموزشگاه فکوران زیر نظر سازمان فنی و حرفه‌ای.',
-    ' متخصص در بهینه‌سازی عملکرد و تجربه کاربری.',
-    ' توسعه‌دهنده پروژه‌های فین‌تک و ارز دیجیتال.',
+    " متخصص در React، Next.js و فریم‌ورک‌های مدرن JavaScript.",
+    " مدرس برنامه‌نویسی وب در آموزشگاه فکوران زیر نظر سازمان فنی و حرفه‌ای.",
+    " متخصص در بهینه‌سازی عملکرد و تجربه کاربری.",
+    " توسعه‌دهنده پروژه‌های فین‌تک و ارز دیجیتال.",
   ];
 
   const dynamicTextsEN = [
-    ' Expert in React, Next.js, and modern JavaScript frameworks.',
-    ' Web Programming Instructor at Fakooran Institute.',
-    ' Specialist in performance optimization and user experience.',
-    ' Developer of FinTech and cryptocurrency projects.',
+    " Expert in React, Next.js, and modern JavaScript frameworks.",
+    " Web Programming Instructor at Fakooran Institute.",
+    " Specialist in performance optimization and user experience.",
+    " Developer of FinTech and cryptocurrency projects.",
   ];
 
-  const baseTextFA = 'توسعه‌دهنده ارشد فرانت‌اند با بیش از ۵ سال تجربه در ساخت برنامه‌های وب با عملکرد بالا.';
-  const baseTextEN = 'Senior Frontend Developer with 5+ years of experience building high-performance web applications.';
+  const baseTextFA =
+    "توسعه‌دهنده ارشد فرانت‌اند با بیش از ۵ سال تجربه در ساخت برنامه‌های وب با عملکرد بالا.";
+  const baseTextEN =
+    "Senior Frontend Developer with 5+ years of experience building high-performance web applications.";
 
   const stats = [
-    { 
-      value: 5, 
-      suffix: '+', 
-      label: isRTL ? 'سال تجربه' : 'Years Experience', 
-      icon: '🎯',
-      duration: 8, // خیلی یواش‌تر - 8 ثانیه
+    {
+      value: 5,
+      suffix: "+",
+      label: isRTL ? "سال تجربه" : "Years Experience",
+      icon: "🎯",
+      duration: 4, // خیلی یواش‌تر - 8 ثانیه
     },
-    { 
-      value: 12, 
-      suffix: '+', 
-      label: isRTL ? 'پروژه موفق' : 'Projects Done', 
-      icon: '🚀',
-      duration: 6, // یواش‌تر - 6 ثانیه
+    {
+      value: 12,
+      suffix: "+",
+      label: isRTL ? "پروژه موفق" : "Projects Done",
+      icon: "🚀",
+      duration: 5, // یواش‌تر - 6 ثانیه
     },
-    { 
-      value: 100, 
-      suffix: '%', 
-      label: isRTL ? 'رضایت مشتری' : 'Client Satisfaction', 
-      icon: '⭐',
-      duration: 2.5, // تندتر - 2.5 ثانیه
+    {
+      value: 100,
+      suffix: "%",
+      label: isRTL ? "رضایت مشتری" : "Client Satisfaction",
+      icon: "⭐",
+      duration: 6, // تندتر - 2.5 ثانیه
     },
   ];
 
   const techStack = [
-    { icon: SiReact, name: 'React', color: '#61DAFB' },
-    { icon: SiNextdotjs, name: 'Next.js', color: '#ffffff' },
-    { icon: SiTailwindcss, name: 'Tailwind', color: '#06B6D4' },
-    { icon: SiJavascript, name: 'JavaScript', color: '#F7DF1E' },
+    { icon: SiReact, name: "React", color: "#61DAFB" },
+    { icon: SiNextdotjs, name: "Next.js", color: "#ffffff" },
+    { icon: SiTailwindcss, name: "Tailwind", color: "#06B6D4" },
+    { icon: SiJavascript, name: "JavaScript", color: "#F7DF1E" },
   ];
 
   return (
@@ -70,7 +92,7 @@ export default function Home() {
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360],
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-[100px] morphing-blob"
         />
         <motion.div
@@ -78,7 +100,7 @@ export default function Home() {
             scale: [1.2, 1, 1.2],
             rotate: [360, 180, 0],
           }}
-          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
           className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-r from-accent/10 to-accent-2/10 rounded-full blur-[120px] morphing-blob"
         />
       </div>
@@ -95,7 +117,7 @@ export default function Home() {
           >
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             <span className="text-white/60 text-sm">
-              {isRTL ? 'آماده همکاری' : 'Available for work'}
+              {isRTL ? "آماده همکاری" : "Available for work"}
             </span>
           </motion.div>
 
@@ -113,7 +135,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="gradient-text text-glow inline-block"
               >
-                {isRTL ? 'حیدر' : 'Haider'}
+                {isRTL ? "حیدر" : "Haider"}
               </motion.span>
               <br />
               <motion.span
@@ -122,7 +144,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="text-white/90 inline-block"
               >
-                {isRTL ? 'شجاع' : 'Shoja'}
+                {isRTL ? "شجاع" : "Shoja"}
               </motion.span>
             </h1>
           </motion.div>
@@ -137,7 +159,7 @@ export default function Home() {
             <div className="inline-flex items-center gap-4 flex-wrap justify-center">
               <motion.div
                 animate={{ rotate: [0, 360] }}
-                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                 className="text-accent text-2xl"
               >
                 <FaCode />
@@ -147,7 +169,7 @@ export default function Home() {
               </h2>
               <motion.div
                 animate={{ rotate: [360, 0] }}
-                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                 className="text-accent-2 text-2xl"
               >
                 <FaLaptopCode />
@@ -212,7 +234,10 @@ export default function Home() {
           >
             <Link to="/projects">
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: '0 0 50px rgba(99, 102, 241, 0.5)' }}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 0 50px rgba(99, 102, 241, 0.5)",
+                }}
                 whileTap={{ scale: 0.95 }}
                 className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-primary to-primary-dark text-white font-medium overflow-hidden"
               >
@@ -287,11 +312,11 @@ export default function Home() {
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
-            animate={{ 
+            animate={{
               y: [0, -15, 0],
-              rotate: [0, 10, -10, 0]
+              rotate: [0, 10, -10, 0],
             }}
-            transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
+            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
             className="text-5xl"
           >
             <FaRocket className="text-accent" />
@@ -307,11 +332,11 @@ export default function Home() {
         className="fixed left-20 md:left-32 top-1/3 z-0"
       >
         <motion.div
-          animate={{ 
+          animate={{
             y: [0, -20, 0],
-            rotate: [0, 360]
+            rotate: [0, 360],
           }}
-          transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
+          transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
           className="text-7xl md:text-8xl"
         >
           <FaCode className="text-primary drop-shadow-[0_0_20px_rgba(99,102,241,0.5)]" />
@@ -326,11 +351,11 @@ export default function Home() {
         className="fixed right-20 md:right-32 top-1/2 z-0"
       >
         <motion.div
-          animate={{ 
+          animate={{
             y: [0, 20, 0],
-            rotate: [360, 0]
+            rotate: [360, 0],
           }}
-          transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
+          transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
           className="text-7xl md:text-8xl"
         >
           <FaLaptopCode className="text-accent-2 drop-shadow-[0_0_20px_rgba(244,114,182,0.5)]" />
@@ -354,11 +379,11 @@ function StatCounter({ stat, delay }) {
     const updateValue = () => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      
+
       // Easing function for smooth animation
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
       const currentValue = Math.floor(easeOutQuart * endValue);
-      
+
       setDisplayValue(currentValue);
 
       if (progress < 1) {
@@ -391,7 +416,7 @@ function StatCounter({ stat, delay }) {
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        transition={{ delay, type: 'spring', stiffness: 200 }}
+        transition={{ delay, type: "spring", stiffness: 200 }}
         className="text-3xl mb-2"
       >
         {stat.icon}
@@ -403,7 +428,8 @@ function StatCounter({ stat, delay }) {
         transition={{ duration: 0.15 }}
         className="text-3xl md:text-4xl font-bold gradient-text min-h-[3rem] flex items-center justify-center"
       >
-        {displayValue}{stat.suffix}
+        {displayValue}
+        {stat.suffix}
       </motion.div>
       <div className="text-white/50 text-sm mt-1">{stat.label}</div>
     </motion.div>
