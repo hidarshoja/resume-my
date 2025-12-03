@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaGithub, FaEnvelope, FaChevronDown, FaCode, FaLaptopCode, FaServer } from 'react-icons/fa';
+import { FaGithub, FaEnvelope, FaCode, FaLaptopCode, FaServer, FaRocket, FaStar, FaCog } from 'react-icons/fa';
 import { SiReact, SiNextdotjs, SiTailwindcss, SiJavascript } from 'react-icons/si';
 import TypewriterText from '../components/TypewriterText';
 import { useLanguage } from '../context/LanguageContext';
@@ -30,9 +30,27 @@ export default function Home() {
   const baseTextEN = 'Senior Frontend Developer with 5+ years of experience building high-performance web applications.';
 
   const stats = [
-    { value: '5+', label: isRTL ? 'سال تجربه' : 'Years Experience', icon: '🎯' },
-    { value: '12+', label: isRTL ? 'پروژه موفق' : 'Projects Done', icon: '🚀' },
-    { value: '100%', label: isRTL ? 'رضایت مشتری' : 'Client Satisfaction', icon: '⭐' },
+    { 
+      value: 5, 
+      suffix: '+', 
+      label: isRTL ? 'سال تجربه' : 'Years Experience', 
+      icon: '🎯',
+      duration: 8, // خیلی یواش‌تر - 8 ثانیه
+    },
+    { 
+      value: 12, 
+      suffix: '+', 
+      label: isRTL ? 'پروژه موفق' : 'Projects Done', 
+      icon: '🚀',
+      duration: 6, // یواش‌تر - 6 ثانیه
+    },
+    { 
+      value: 100, 
+      suffix: '%', 
+      label: isRTL ? 'رضایت مشتری' : 'Client Satisfaction', 
+      icon: '⭐',
+      duration: 2.5, // تندتر - 2.5 ثانیه
+    },
   ];
 
   const techStack = [
@@ -229,22 +247,7 @@ export default function Home() {
             className="grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto mb-16"
           >
             {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="glass rounded-2xl p-6 text-center cursor-default"
-              >
-                <div className="text-3xl mb-2">{stat.icon}</div>
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 1.8 + index * 0.1, type: 'spring' }}
-                  className="text-3xl md:text-4xl font-bold gradient-text"
-                >
-                  {stat.value}
-                </motion.div>
-                <div className="text-white/50 text-sm mt-1">{stat.label}</div>
-              </motion.div>
+              <StatCounter key={index} stat={stat} delay={1.8 + index * 0.1} />
             ))}
           </motion.div>
 
@@ -276,23 +279,133 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Floating Icon - Center Bottom (replacing scroll indicator) */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.5 }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 0.3, scale: 1 }}
+          transition={{ delay: 2.5, duration: 0.8 }}
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            className="flex flex-col items-center gap-2 text-white/40"
+            animate={{ 
+              y: [0, -15, 0],
+              rotate: [0, 10, -10, 0]
+            }}
+            transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
+            className="text-5xl"
           >
-            <span className="text-xs">{isRTL ? 'اسکرول کنید' : 'Scroll'}</span>
-            <FaChevronDown size={16} />
+            <FaRocket className="text-accent" />
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Floating Icons - Left Side */}
+      <motion.div
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 0.6, x: 0 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="fixed left-20 md:left-32 top-1/3 z-0"
+      >
+        <motion.div
+          animate={{ 
+            y: [0, -20, 0],
+            rotate: [0, 360]
+          }}
+          transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
+          className="text-7xl md:text-8xl"
+        >
+          <FaCode className="text-primary drop-shadow-[0_0_20px_rgba(99,102,241,0.5)]" />
+        </motion.div>
+      </motion.div>
+
+      {/* Floating Icons - Right Side */}
+      <motion.div
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 0.6, x: 0 }}
+        transition={{ delay: 2.2, duration: 1 }}
+        className="fixed right-20 md:right-32 top-1/2 z-0"
+      >
+        <motion.div
+          animate={{ 
+            y: [0, 20, 0],
+            rotate: [360, 0]
+          }}
+          transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
+          className="text-7xl md:text-8xl"
+        >
+          <FaLaptopCode className="text-accent-2 drop-shadow-[0_0_20px_rgba(244,114,182,0.5)]" />
+        </motion.div>
+      </motion.div>
     </div>
+  );
+}
+
+// Stat Counter Component with different speeds
+function StatCounter({ stat, delay }) {
+  const [displayValue, setDisplayValue] = useState(0);
+  const { isRTL } = useLanguage();
+
+  useEffect(() => {
+    const startTime = Date.now();
+    const endValue = stat.value;
+    const duration = stat.duration * 1000; // Convert to milliseconds
+    let animationFrame;
+
+    const updateValue = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const currentValue = Math.floor(easeOutQuart * endValue);
+      
+      setDisplayValue(currentValue);
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(updateValue);
+      } else {
+        setDisplayValue(endValue);
+      }
+    };
+
+    const timeout = setTimeout(() => {
+      updateValue();
+    }, delay * 1000);
+
+    return () => {
+      clearTimeout(timeout);
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [stat.value, stat.duration, delay]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay, duration: 0.5 }}
+      whileHover={{ scale: 1.05, y: -5 }}
+      className="glass rounded-2xl p-6 text-center cursor-default"
+    >
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay, type: 'spring', stiffness: 200 }}
+        className="text-3xl mb-2"
+      >
+        {stat.icon}
+      </motion.div>
+      <motion.div
+        key={displayValue}
+        initial={{ scale: 1.1, opacity: 0.7 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.15 }}
+        className="text-3xl md:text-4xl font-bold gradient-text min-h-[3rem] flex items-center justify-center"
+      >
+        {displayValue}{stat.suffix}
+      </motion.div>
+      <div className="text-white/50 text-sm mt-1">{stat.label}</div>
+    </motion.div>
   );
 }
