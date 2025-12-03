@@ -1,108 +1,220 @@
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaGithub, FaEnvelope, FaArrowDown, FaCode, FaRocket, FaLaptopCode } from 'react-icons/fa';
+import { FaGithub, FaEnvelope, FaChevronDown, FaCode, FaLaptopCode, FaServer } from 'react-icons/fa';
+import { SiReact, SiNextdotjs, SiTailwindcss, SiJavascript } from 'react-icons/si';
+import TypewriterText from '../components/TypewriterText';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Home() {
   const { t, isRTL } = useLanguage();
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
-  const floatingIcons = [
-    { icon: '⚛️', delay: 0, x: '10%', y: '20%' },
-    { icon: '🚀', delay: 0.5, x: '85%', y: '15%' },
-    { icon: '💻', delay: 1, x: '75%', y: '70%' },
-    { icon: '🎨', delay: 1.5, x: '15%', y: '75%' },
-    { icon: '⚡', delay: 2, x: '50%', y: '85%' },
+  const dynamicTextsFA = [
+    ' متخصص در React، Next.js و فریم‌ورک‌های مدرن JavaScript.',
+    ' مدرس برنامه‌نویسی وب در آموزشگاه فکوران زیر نظر سازمان فنی و حرفه‌ای.',
+    ' متخصص در بهینه‌سازی عملکرد و تجربه کاربری.',
+    ' توسعه‌دهنده پروژه‌های فین‌تک و ارز دیجیتال.',
   ];
 
+  const dynamicTextsEN = [
+    ' Expert in React, Next.js, and modern JavaScript frameworks.',
+    ' Web Programming Instructor at Fakooran Institute.',
+    ' Specialist in performance optimization and user experience.',
+    ' Developer of FinTech and cryptocurrency projects.',
+  ];
+
+  const baseTextFA = 'توسعه‌دهنده ارشد فرانت‌اند با بیش از ۵ سال تجربه در ساخت برنامه‌های وب با عملکرد بالا.';
+  const baseTextEN = 'Senior Frontend Developer with 5+ years of experience building high-performance web applications.';
+
   const stats = [
-    { value: '5+', label: isRTL ? 'سال تجربه' : 'Years Experience' },
-    { value: '12+', label: isRTL ? 'پروژه موفق' : 'Projects Completed' },
-    { value: '100%', label: isRTL ? 'رضایت مشتری' : 'Client Satisfaction' },
+    { value: '5+', label: isRTL ? 'سال تجربه' : 'Years Experience', icon: '🎯' },
+    { value: '12+', label: isRTL ? 'پروژه موفق' : 'Projects Done', icon: '🚀' },
+    { value: '100%', label: isRTL ? 'رضایت مشتری' : 'Client Satisfaction', icon: '⭐' },
+  ];
+
+  const techStack = [
+    { icon: SiReact, name: 'React', color: '#61DAFB' },
+    { icon: SiNextdotjs, name: 'Next.js', color: '#ffffff' },
+    { icon: SiTailwindcss, name: 'Tailwind', color: '#06B6D4' },
+    { icon: SiJavascript, name: 'JavaScript', color: '#F7DF1E' },
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden animated-bg grid-pattern">
-      {/* Floating Icons */}
-      {floatingIcons.map((item, index) => (
+    <div ref={containerRef} className="min-h-screen relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 animated-bg grid-pattern">
+        {/* Morphing Blobs */}
         <motion.div
-          key={index}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 0.3, scale: 1 }}
-          transition={{ delay: item.delay, duration: 0.5 }}
-          className="absolute text-4xl floating"
-          style={{ left: item.x, top: item.y, animationDelay: `${item.delay}s` }}
-        >
-          {item.icon}
-        </motion.div>
-      ))}
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 180, 360],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-[100px] morphing-blob"
+        />
+        <motion.div
+          animate={{
+            scale: [1.2, 1, 1.2],
+            rotate: [360, 180, 0],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-r from-accent/10 to-accent-2/10 rounded-full blur-[120px] morphing-blob"
+        />
+      </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-        <div className="text-center">
-          {/* Greeting */}
-          <motion.p
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
+        <div className="max-w-6xl mx-auto text-center">
+          {/* Greeting Badge */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-white/60 text-lg mb-4"
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8"
           >
-            {t.hero.greeting}
-          </motion.p>
-
-          {/* Name */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
-          >
-            <span className="gradient-text text-glow">{t.hero.name}</span>
-          </motion.h1>
-
-          {/* Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mb-6"
-          >
-            <h2 className="text-2xl md:text-3xl text-white/90 font-medium mb-2">
-              {t.hero.title}
-            </h2>
-            <p className="text-lg text-accent">{t.hero.subtitle}</p>
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-white/60 text-sm">
+              {isRTL ? 'آماده همکاری' : 'Available for work'}
+            </span>
           </motion.div>
 
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="max-w-2xl mx-auto text-white/60 text-lg mb-10 leading-relaxed"
+          {/* Name with Reveal Animation */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-6"
           >
-            {t.hero.description}
-          </motion.p>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-4">
+              <motion.span
+                initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="gradient-text text-glow inline-block"
+              >
+                {isRTL ? 'حیدر' : 'Haider'}
+              </motion.span>
+              <br />
+              <motion.span
+                initial={{ opacity: 0, x: isRTL ? -50 : 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="text-white/90 inline-block"
+              >
+                {isRTL ? 'شجاع' : 'Shoja'}
+              </motion.span>
+            </h1>
+          </motion.div>
+
+          {/* Animated Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="mb-8"
+          >
+            <div className="inline-flex items-center gap-4 flex-wrap justify-center">
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                className="text-accent text-2xl"
+              >
+                <FaCode />
+              </motion.div>
+              <h2 className="text-2xl md:text-4xl font-bold text-white">
+                {t.hero.title}
+              </h2>
+              <motion.div
+                animate={{ rotate: [360, 0] }}
+                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                className="text-accent-2 text-2xl"
+              >
+                <FaLaptopCode />
+              </motion.div>
+            </div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="text-accent text-lg mt-2"
+            >
+              {t.hero.subtitle}
+            </motion.p>
+          </motion.div>
+
+          {/* Typewriter Description */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1 }}
+            className="max-w-3xl mx-auto mb-12 min-h-[80px]"
+          >
+            <TypewriterText
+              texts={isRTL ? dynamicTextsFA : dynamicTextsEN}
+              baseText={isRTL ? baseTextFA : baseTextEN}
+              isRTL={isRTL}
+            />
+          </motion.div>
+
+          {/* Tech Stack Icons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+            className="flex items-center justify-center gap-6 mb-12"
+          >
+            {techStack.map((tech, index) => (
+              <motion.div
+                key={tech.name}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.3 + index * 0.1 }}
+                whileHover={{ scale: 1.2, y: -5 }}
+                className="p-3 rounded-xl glass cursor-pointer group"
+                title={tech.name}
+              >
+                <tech.icon
+                  size={28}
+                  style={{ color: tech.color }}
+                  className="transition-transform group-hover:rotate-12"
+                />
+              </motion.div>
+            ))}
+          </motion.div>
 
           {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 1.4 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
           >
             <Link to="/projects">
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: '0 0 50px rgba(99, 102, 241, 0.5)' }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-full bg-gradient-to-r from-primary to-primary-dark text-white font-medium btn-glow glow"
+                className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-primary to-primary-dark text-white font-medium overflow-hidden"
               >
-                {t.hero.cta}
+                <span className="relative z-10 flex items-center gap-2">
+                  {t.hero.cta}
+                  <motion.span
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    →
+                  </motion.span>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent to-accent-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.button>
             </Link>
             <Link to="/contact">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-full glass text-white font-medium border border-white/20 hover:border-primary/50 transition-colors"
+                className="px-8 py-4 rounded-full glass text-white font-medium border border-white/20 hover:border-accent/50 transition-all hover:bg-white/5"
               >
                 {t.hero.contact}
               </motion.button>
@@ -113,19 +225,25 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="flex flex-wrap items-center justify-center gap-8 md:gap-16 mb-16"
+            transition={{ duration: 0.6, delay: 1.6 }}
+            className="grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto mb-16"
           >
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                whileHover={{ scale: 1.1 }}
-                className="text-center"
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="glass rounded-2xl p-6 text-center cursor-default"
               >
-                <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">
+                <div className="text-3xl mb-2">{stat.icon}</div>
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 1.8 + index * 0.1, type: 'spring' }}
+                  className="text-3xl md:text-4xl font-bold gradient-text"
+                >
                   {stat.value}
-                </div>
-                <div className="text-white/40 text-sm">{stat.label}</div>
+                </motion.div>
+                <div className="text-white/50 text-sm mt-1">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -134,22 +252,24 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 2 }}
             className="flex items-center justify-center gap-4"
           >
             <motion.a
               href="https://github.com/hidarshoja"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, y: -3 }}
-              className="p-4 rounded-full glass text-white/60 hover:text-white transition-colors"
+              whileHover={{ scale: 1.1, y: -3, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-4 rounded-full glass text-white/60 hover:text-white hover:bg-white/10 transition-all"
             >
               <FaGithub size={24} />
             </motion.a>
             <motion.a
               href="mailto:hidarshoja@gmail.com"
-              whileHover={{ scale: 1.1, y: -3 }}
-              className="p-4 rounded-full glass text-white/60 hover:text-white transition-colors"
+              whileHover={{ scale: 1.1, y: -3, rotate: -5 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-4 rounded-full glass text-white/60 hover:text-white hover:bg-white/10 transition-all"
             >
               <FaEnvelope size={24} />
             </motion.a>
@@ -160,25 +280,19 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
+          transition={{ delay: 2.5 }}
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="text-white/40"
+            transition={{ repeat: Infinity, duration: 2 }}
+            className="flex flex-col items-center gap-2 text-white/40"
           >
-            <FaArrowDown size={20} />
+            <span className="text-xs">{isRTL ? 'اسکرول کنید' : 'Scroll'}</span>
+            <FaChevronDown size={16} />
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Decorative Elements */}
-      <div className="absolute top-1/4 left-10 w-72 h-72 bg-primary/20 rounded-full blur-[100px]" />
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-accent/10 rounded-full blur-[120px]" />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-2/5 rounded-full blur-[150px]" />
     </div>
   );
 }
-
-

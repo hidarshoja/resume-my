@@ -24,7 +24,7 @@ function App() {
             </Routes>
           </main>
           <Footer />
-        </div>
+      </div>
       </Router>
     </LanguageProvider>
   );
