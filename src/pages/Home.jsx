@@ -309,7 +309,7 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 0.3, scale: 1 }}
           transition={{ delay: 2.5, duration: 0.8 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:block"
         >
           <motion.div
             animate={{
@@ -329,7 +329,7 @@ export default function Home() {
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 0.6, x: 0 }}
         transition={{ delay: 2, duration: 1 }}
-        className="fixed left-20 md:left-32 top-1/3 z-0"
+        className="fixed left-20 md:left-32 top-1/3 z-0 hidden md:block"
       >
         <motion.div
           animate={{
@@ -348,7 +348,7 @@ export default function Home() {
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 0.6, x: 0 }}
         transition={{ delay: 2.2, duration: 1 }}
-        className="fixed right-20 md:right-32 top-1/2 z-0"
+        className="fixed right-20 md:right-32 top-1/2 z-0 hidden md:block"
       >
         <motion.div
           animate={{
