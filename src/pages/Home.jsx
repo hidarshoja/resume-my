@@ -190,7 +190,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1 }}
-            className="max-w-3xl mx-auto mb-12 min-h-[80px]"
+            className="max-w-3xl mx-auto mb-12 min-h-[180px] md:min-h-[80px]"
           >
             <TypewriterText
               texts={isRTL ? dynamicTextsFA : dynamicTextsEN}
@@ -204,7 +204,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.2 }}
-            className="flex items-center justify-center gap-6 mb-12"
+            className="flex items-center justify-center gap-6 mb-12 "
           >
             {techStack.map((tech, index) => (
               <motion.div
