@@ -1,14 +1,21 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-import { FaBriefcase, FaTrophy, FaGraduationCap, FaCheckCircle, FaRocket, FaCode } from 'react-icons/fa';
-import { useLanguage } from '../context/LanguageContext';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import {
+  FaBriefcase,
+  FaTrophy,
+  FaGraduationCap,
+  FaCheckCircle,
+  FaRocket,
+  FaCode,
+} from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function About() {
   const { t, isRTL } = useLanguage();
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end start'],
+    offset: ["start end", "end start"],
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
@@ -27,12 +34,12 @@ export default function About() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30, scale: 0.95 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
+    visible: {
+      opacity: 1,
+      y: 0,
       scale: 1,
       transition: {
-        type: 'spring',
+        type: "spring",
         stiffness: 100,
         damping: 15,
       },
@@ -40,7 +47,10 @@ export default function About() {
   };
 
   return (
-    <div ref={containerRef} className="min-h-screen py-32 animated-bg grid-pattern overflow-x-hidden">
+    <div
+      ref={containerRef}
+      className="min-h-screen py-32 animated-bg grid-pattern overflow-x-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -54,7 +64,7 @@ export default function About() {
             transition={{ delay: 0.2 }}
             className="inline-block px-4 py-2 rounded-full glass text-accent text-sm mb-4"
           >
-            {isRTL ? '👋 آشنایی با من' : '👋 Get to know me'}
+            {isRTL ? "👋 آشنایی با من" : "👋 Get to know me"}
           </motion.span>
           <h1 className="text-5xl md:text-7xl font-bold mb-4">
             <span className="gradient-text">{t.about.title}</span>
@@ -73,7 +83,7 @@ export default function About() {
           <div className="relative glass rounded-3xl p-8 md:p-12 bg-dark/80">
             <motion.div
               initial={{ width: 0 }}
-              animate={{ width: '60px' }}
+              animate={{ width: "60px" }}
               transition={{ delay: 0.5, duration: 0.8 }}
               className="h-1 bg-gradient-to-r from-primary to-accent rounded-full mb-6 mx-auto"
             />
@@ -94,7 +104,7 @@ export default function About() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 flex items-center justify-center gap-4">
             <motion.div
               animate={{ rotate: [0, 360] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
             >
               <FaTrophy className="text-gold text-3xl" />
             </motion.div>
@@ -128,7 +138,9 @@ export default function About() {
                       <h3 className="text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
                         {achievement.title}
                       </h3>
-                      <p className="text-white/60 leading-relaxed">{achievement.description}</p>
+                      <p className="text-white/60 leading-relaxed">
+                        {achievement.description}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -157,11 +169,15 @@ export default function About() {
             {/* Animated Timeline Line */}
             <motion.div
               initial={{ height: 0 }}
-              whileInView={{ height: '100%' }}
+              whileInView={{ height: "100%" }}
               viewport={{ once: true }}
-              transition={{ duration: 1.5, ease: 'easeOut' }}
-              className={`absolute ${isRTL ? 'right-4 md:right-1/2' : 'left-4 md:left-1/2'} top-0 w-1 bg-gradient-to-b from-primary via-accent to-accent-2 rounded-full`}
-              style={{ transform: isRTL ? 'translateX(50%)' : 'translateX(-50%)' }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className={`absolute ${
+                isRTL ? "right-4 md:right-1/2" : "left-4 md:left-1/2"
+              } top-0 w-1 bg-gradient-to-b from-primary via-accent to-accent-2 rounded-full`}
+              style={{
+                transform: isRTL ? "translateX(50%)" : "translateX(-50%)",
+              }}
             />
 
             <motion.div
@@ -176,7 +192,7 @@ export default function About() {
                   key={index}
                   variants={itemVariants}
                   className={`relative flex flex-col md:flex-row ${
-                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                   } items-center gap-8`}
                 >
                   {/* Timeline Dot */}
@@ -184,12 +200,18 @@ export default function About() {
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.2, type: 'spring' }}
-                    className={`absolute ${isRTL ? 'right-0' : 'left-4'} md:left-1/2 transform md:-translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-r from-primary to-accent z-10 pulse-glow`}
+                    transition={{ delay: index * 0.2, type: "spring" }}
+                    className={`absolute ${
+                      isRTL ? "right-0" : "left-4"
+                    } md:left-1/2 transform md:-translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-r from-primary to-accent z-10 pulse-glow`}
                   />
 
                   {/* Content Card */}
-                  <div className={`w-full md:w-[calc(50%-3rem)] ${isRTL ? 'pr-8 md:pr-0' : 'pl-8 md:pl-0'}`}>
+                  <div
+                    className={`w-full md:w-[calc(50%-3rem)] ${
+                      isRTL ? "pr-8 md:pr-0" : "pl-8 md:pl-0"
+                    }`}
+                  >
                     <motion.div
                       whileHover={{ scale: 1.02, y: -5 }}
                       className="group glass rounded-2xl p-6 border border-white/5 hover:border-primary/30 transition-all duration-300"
@@ -210,15 +232,17 @@ export default function About() {
                           <h3 className="text-xl font-bold text-white group-hover:text-accent transition-colors">
                             {exp.role}
                           </h3>
-                          <p className="text-primary text-sm font-medium">{exp.company}</p>
+                          <p className="text-primary text-sm font-medium">
+                            {exp.company}
+                          </p>
                         </div>
                       </div>
-                      
+
                       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-white/40 text-sm mb-4">
                         <span>📅</span>
                         {exp.period}
                       </div>
-                      
+
                       <ul className="space-y-3">
                         {exp.responsibilities.map((resp, respIndex) => (
                           <motion.li
