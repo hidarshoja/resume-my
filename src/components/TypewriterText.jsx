@@ -48,3 +48,5 @@ export default function TypewriterText({ texts, baseText, isRTL }) {
   );
 }
 
+
+
