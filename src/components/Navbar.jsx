@@ -100,38 +100,117 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Sidebar */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass mt-2 mx-4 rounded-2xl overflow-hidden"
-          >
-            <div className="p-4 space-y-2">
-              {navLinks.map((link, index) => (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+            />
+
+            {/* Sidebar */}
+            <motion.div
+              initial={{ x: isRTL ? '-100%' : '100%', opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: isRTL ? '-100%' : '100%', opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className={`fixed top-0 bottom-0 md:hidden w-80 max-w-[85vw] glass z-50 shadow-2xl ${
+                isRTL ? 'right-0' : 'left-0'
+              }`}
+            >
+              <div className="h-full flex flex-col p-6">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-8">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="p-2 rounded-lg glassNavbar text-white/80 hover:text-white transition-colors"
+                  >
+                    <HiX size={24} />
+                  </motion.button>
+                  
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={toggleLanguage}
+                    className="px-4 py-2 rounded-full glass text-sm font-medium text-white/80 hover:text-white transition-colors"
+                  >
+                    {language === 'fa' ? 'EN' : 'فا'}
+                  </motion.button>
+                </div>
+
+                {/* Name */}
                 <motion.div
-                  key={link.path}
-                  initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="mb-8"
+                >
+                  <h2 className="text-3xl font-bold">
+                    <span className="gradient-text">
+                      {isRTL ? 'حیدر' : 'Haider'}
+                    </span>
+                    <span className="text-white/80">
+                      {isRTL ? ' شجاع' : ' Shoja'}
+                    </span>
+                  </h2>
+                </motion.div>
+
+                {/* Navigation Links */}
+                <div className="flex-1 space-y-2">
+                  {navLinks.map((link, index) => (
+                    <motion.div
+                      key={link.path}
+                      initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1 }}
+                    >
+                      <Link
+                        to={link.path}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
+                          location.pathname === link.path
+                            ? 'bg-gradient-to-r from-primary/20 to-accent/20 text-white border border-primary/30'
+                            : 'text-white/60 hover:bg-white/5 hover:text-white'
+                        }`}
+                      >
+                        {location.pathname === link.path && (
+                          <motion.div
+                            layoutId="mobile-nav-indicator"
+                            className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-accent"
+                            transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                          />
+                        )}
+                        <span>{link.label}</span>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Footer Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="mt-8"
                 >
                   <Link
-                    to={link.path}
+                    to="/contact"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
-                      location.pathname === link.path
-                        ? 'bg-white/10 text-white'
-                        : 'text-white/60 hover:bg-white/5 hover:text-white'
-                    }`}
+                    className="block w-full px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-accent text-white font-medium text-center hover:shadow-lg hover:shadow-primary/30 transition-all"
                   >
-                    {link.label}
+                    {isRTL ? 'تماس' : 'Contact'}
                   </Link>
                 </motion.div>
-              ))}
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.nav>
