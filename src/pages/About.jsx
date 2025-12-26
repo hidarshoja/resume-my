@@ -185,7 +185,7 @@ export default function About() {
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.2, type: 'spring' }}
-                    className={`absolute ${isRTL ? 'right-6' : 'left-6'} md:left-1/2 transform md:-translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-r from-primary to-accent z-10 pulse-glow`}
+                    className={`absolute ${isRTL ? 'right-0' : 'left-8'} md:left-1/2 transform md:-translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-r from-primary to-accent z-10 pulse-glow`}
                   />
 
                   {/* Content Card */}

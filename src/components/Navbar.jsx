@@ -32,7 +32,7 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass py-3' : 'py-5'
+        isScrolled ? 'glassNavbar py-3' : 'py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,7 +92,7 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg glass text-white/80 hover:text-white transition-colors"
+              className="md:hidden p-2 rounded-lg glassNavbar text-white/80 hover:text-white transition-colors"
             >
               {isMobileMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
             </button>
