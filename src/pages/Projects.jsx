@@ -1,73 +1,102 @@
-import { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaExternalLinkAlt, FaPlay, FaTimes, FaImages, FaFilter, FaExpand } from 'react-icons/fa';
-import { useLanguage } from '../context/LanguageContext';
+import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  FaExternalLinkAlt,
+  FaPlay,
+  FaTimes,
+  FaImages,
+  FaFilter,
+  FaExpand,
+} from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 
-// Placeholder images - replace with actual project screenshots
+// Project images mapping
 const projectImages = {
-  1: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-  2: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&q=80',
-  3: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-  4: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&q=80',
-  5: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?w=800&q=80',
-  6: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
-  7: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80',
-  8: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80',
-  9: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80',
-  10: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80',
-  11: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
+  1: "/img/atlas.png", // Atlas Pood
+  2: "/img/asprin.png", // Dr. Aspirin Treatment Site
+  3: "/img/adminASPRIN.png", // Dr. Aspirin Admin Panel
+  4: "/img/adminCLUB.png", // Digital Currency Platform (Club Mega Card)
+  5: "/img/gold.png", // Gold Trading Website
+  6: "/img/nora.png", // Nora Part Shop
+  7: "/img/sorena.png", // Real Estate Project
+  8: "/img/kh.png", // Iranian Carpet Project (fallback)
+  9: "/img/fakor.png", // Fakur Training Site
+  10: "/img/byond.png", // Beyond Website
+  11: "/img/pars.png", // Pars Hesabdar
+  12: "/img/userClub.png", // Club Mega Card
 };
 
-// Sample demo video (placeholder - replace with actual demo videos)
-const demoVideoUrl = 'https://www.w3schools.com/html/mov_bbb.mp4';
+const projectUrls = {
+  1: "https://doopsalta2.com/", // Atlas Pood
+  2: "https://asprin-22xm.vercel.app/", // Dr. Aspirin Treatment Site
+  3: "https://admin-asprin.vercel.app/", // Dr. Aspirin Admin Panel
+  4: "https://api.clubmegacard.com/", // Digital Currency Platform (Club Mega Card)
+  5: "https://gold-pars.vercel.app/", // Gold Trading Website
+  6: "https://norapart.ir", // Nora Part Shop
+  7: "https://amlack-sorena2-jh98.vercel.app/", // Real Estate Project
+  8: "https://khazairugs.com/", // Iranian Carpet Project (fallback)
+  9: "https://fakoorins.ir/", // Fakur Training Site
+  10: "https://beyond-it.info/", // Beyond Website
+  11: "https://www.parshesabdar.com/", // Pars Hesabdar
+  12 :"https://user-dev.clubmegacard.com/"
+};
+
+// Project videos mapping
+const projectVideos = {
+  1: "/video/atlas.mp4", // Atlas Pood
+  2: "/video/asprin.mp4", // Dr. Aspirin Treatment Site
+  3: "/video/adminAsprin.mp4", // Dr. Aspirin Admin Panel
+  4: "/video/adminClub.mp4", // Digital Currency Platform (Club Mega Card)
+  5: "/video/gold.mp4", // Gold Trading Website
+  6: "/video/nora.mp4", // Nora Part Shop
+  7: "/video/sorena.mp4", // Real Estate Project
+  8: "/video/kh.mp4", // Iranian Carpet Project (fallback)
+  9: "/video/fakor.mp4", // Fakur Training Site
+  10: "/video/byond.mp4", // Beyond Website
+  11: "/video/pars.mp4", // Pars Hesabdar
+  12: "/video/userClub2.mp4", // Club Mega Card
+};
 
 export default function Projects() {
   const { t, isRTL } = useLanguage();
-  const [filter, setFilter] = useState('all');
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [filter, setFilter] = useState("all");
   const [showDemoModal, setShowDemoModal] = useState(false);
-  const [showGalleryModal, setShowGalleryModal] = useState(false);
   const [currentProject, setCurrentProject] = useState(null);
   const videoRef = useRef(null);
 
   const categories = [
-    { id: 'all', label: isRTL ? 'همه' : 'All' },
-    { id: 'fintech', label: isRTL ? 'فین‌تک' : 'FinTech' },
-    { id: 'ecommerce', label: isRTL ? 'فروشگاهی' : 'E-commerce' },
-    { id: 'corporate', label: isRTL ? 'شرکتی' : 'Corporate' },
-    { id: 'healthcare', label: isRTL ? 'پزشکی' : 'Healthcare' },
+    { id: "all", label: isRTL ? "همه" : "All" },
+    { id: "fintech", label: isRTL ? "فین‌تک" : "FinTech" },
+    { id: "ecommerce", label: isRTL ? "فروشگاهی" : "E-commerce" },
+    { id: "corporate", label: isRTL ? "شرکتی" : "Corporate" },
+    { id: "healthcare", label: isRTL ? "پزشکی" : "Healthcare" },
   ];
 
   const categoryMap = {
-    'FinTech': 'fintech',
-    'فین‌تک': 'fintech',
-    'E-commerce': 'ecommerce',
-    'فروشگاهی': 'ecommerce',
-    'Corporate': 'corporate',
-    'شرکتی': 'corporate',
-    'Healthcare': 'healthcare',
-    'پزشکی': 'healthcare',
-    'Dashboard': 'corporate',
-    'داشبورد': 'corporate',
-    'Education': 'corporate',
-    'آموزشی': 'corporate',
-    'Real Estate': 'corporate',
-    'املاک': 'corporate',
+    FinTech: "fintech",
+    فین‌تک: "fintech",
+    "E-commerce": "ecommerce",
+    فروشگاهی: "ecommerce",
+    Corporate: "corporate",
+    شرکتی: "corporate",
+    Healthcare: "healthcare",
+    پزشکی: "healthcare",
+    Dashboard: "corporate",
+    داشبورد: "corporate",
+    Education: "corporate",
+    آموزشی: "corporate",
+    "Real Estate": "corporate",
+    املاک: "corporate",
   };
 
   const filteredProjects = t.projects.projectsList.filter((project) => {
-    if (filter === 'all') return true;
+    if (filter === "all") return true;
     return categoryMap[project.category] === filter;
   });
 
   const openDemoModal = (project) => {
     setCurrentProject(project);
     setShowDemoModal(true);
-  };
-
-  const openGalleryModal = (project) => {
-    setCurrentProject(project);
-    setShowGalleryModal(true);
   };
 
   const closeDemoModal = () => {
@@ -92,7 +121,7 @@ export default function Projects() {
             transition={{ delay: 0.2 }}
             className="inline-block px-4 py-2 rounded-full glass text-accent text-sm mb-4"
           >
-            {isRTL ? '💼 نمونه کارها' : '💼 Portfolio'}
+            {isRTL ? "💼 نمونه کارها" : "💼 Portfolio"}
           </motion.span>
           <h1 className="text-5xl md:text-7xl font-bold mb-4">
             <span className="gradient-text">{t.projects.title}</span>
@@ -121,8 +150,8 @@ export default function Projects() {
               onClick={() => setFilter(category.id)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 filter === category.id
-                  ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/30'
-                  : 'glass text-white/60 hover:text-white hover:bg-white/10'
+                  ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/30"
+                  : "glass text-white/60 hover:text-white hover:bg-white/10"
               }`}
             >
               {category.label}
@@ -143,24 +172,28 @@ export default function Projects() {
                 initial={{ opacity: 0, scale: 0.8, y: 50 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ delay: index * 0.1, type: 'spring', stiffness: 100 }}
+                transition={{
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 100,
+                }}
                 className="group perspective-card"
               >
                 <div className="glass rounded-3xl overflow-hidden card-hover tilt-card">
                   {/* Project Image with Play Overlay */}
-                  <div 
+                  <div
                     className="relative h-56 overflow-hidden cursor-pointer"
                     onClick={() => openDemoModal(project)}
                   >
                     <img
-                      src={projectImages[project.id]}
+                      src={projectImages[project.id] || projectImages[1]}
                       alt={project.title}
                       className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:blur-sm"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent opacity-60" />
-                    
+
                     {/* Play Button Overlay */}
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, scale: 0.5 }}
                       whileHover={{ opacity: 1, scale: 1 }}
                       className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
@@ -175,7 +208,7 @@ export default function Projects() {
                     </motion.div>
 
                     {/* Category Badge */}
-                    <motion.div 
+                    <motion.div
                       initial={{ x: 20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: index * 0.1 + 0.3 }}
@@ -203,7 +236,9 @@ export default function Projects() {
                           key={techIndex}
                           initial={{ opacity: 0, scale: 0 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: index * 0.1 + techIndex * 0.05 + 0.5 }}
+                          transition={{
+                            delay: index * 0.1 + techIndex * 0.05 + 0.5,
+                          }}
                           className="px-3 py-1 rounded-lg text-xs bg-white/5 text-white/60 border border-white/10 hover:border-primary/50 hover:text-primary transition-all"
                         >
                           {tech}
@@ -216,6 +251,9 @@ export default function Projects() {
                       <motion.button
                         whileHover={{ scale: 1.02, y: -2 }}
                         whileTap={{ scale: 0.98 }}
+                        onClick={() =>
+                          window.open(projectUrls[project.id], "_blank")
+                        }
                         className="flex-1 py-3 rounded-xl bg-gradient-to-r from-primary/20 to-primary/10 text-primary text-sm font-medium hover:from-primary/30 hover:to-primary/20 transition-all flex items-center justify-center gap-2 border border-primary/20"
                       >
                         <FaExternalLinkAlt size={12} />
@@ -228,7 +266,7 @@ export default function Projects() {
                         className="flex-1 py-3 rounded-xl bg-gradient-to-r from-accent/20 to-accent/10 text-accent text-sm font-medium hover:from-accent/30 hover:to-accent/20 transition-all flex items-center justify-center gap-2 border border-accent/20"
                       >
                         <FaPlay size={12} />
-                        {isRTL ? 'مشاهده دمو' : 'View Demo'}
+                        {isRTL ? "مشاهده دمو" : "View Demo"}
                       </motion.button>
                     </div>
                   </div>
@@ -247,7 +285,7 @@ export default function Projects() {
           >
             <div className="text-6xl mb-4">🔍</div>
             <p className="text-white/40 text-lg">
-              {isRTL ? 'پروژه‌ای یافت نشد' : 'No projects found'}
+              {isRTL ? "پروژه‌ای یافت نشد" : "No projects found"}
             </p>
           </motion.div>
         )}
@@ -267,7 +305,7 @@ export default function Projects() {
               initial={{ scale: 0.8, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.8, opacity: 0, y: 50 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
               className="relative w-full max-w-4xl"
               onClick={(e) => e.stopPropagation()}
             >
@@ -289,7 +327,7 @@ export default function Projects() {
                     {currentProject.title}
                   </h3>
                   <p className="text-white/50 text-sm">
-                    {isRTL ? 'دمو پروژه' : 'Project Demo'}
+                    {isRTL ? "دمو پروژه" : "Project Demo"}
                   </p>
                 </div>
 
@@ -305,13 +343,15 @@ export default function Projects() {
                     autoPlay
                     playsInline
                   >
-                    <source src={demoVideoUrl} type="video/mp4" />
-                    {isRTL 
-                      ? 'مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.'
-                      : 'Your browser does not support the video tag.'
-                    }
+                    <source
+                      src={projectVideos[currentProject.id] || projectVideos[1]}
+                      type="video/mp4"
+                    />
+                    {isRTL
+                      ? "مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند."
+                      : "Your browser does not support the video tag."}
                   </video>
-                  
+
                   {/* Watermark */}
                   <div className="absolute bottom-4 right-4 text-white/30 text-sm pointer-events-none">
                     haider.dev
@@ -333,6 +373,9 @@ export default function Projects() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={() =>
+                      window.open(projectUrls[currentProject.id], "_blank")
+                    }
                     className="px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium flex items-center gap-2"
                   >
                     <FaExternalLinkAlt size={12} />

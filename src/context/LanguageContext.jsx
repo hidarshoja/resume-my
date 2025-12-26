@@ -194,6 +194,13 @@ export const translations = {
           tech: ['React', 'Financial Tools'],
           category: 'FinTech',
         },
+        {
+          id: 12,
+          title: 'User Club Mega Card',
+          description: 'Accounting software platform',
+          tech: ['React', 'Financial Tools'],
+          category: 'FinTech',
+        },
       ],
     },
     // Skills Page
@@ -414,13 +421,20 @@ export const translations = {
           tech: ['React', 'Responsive Design'],
           category: 'شرکتی',
         },
-        {
-          id: 11,
-          title: 'پارس حسابدار',
-          description: 'پلتفرم نرم‌افزار حسابداری',
-          tech: ['React', 'Financial Tools'],
-          category: 'فین‌تک',
-        },
+          {
+            id: 11,
+            title: 'پارس حسابدار',
+            description: 'پلتفرم نرم‌افزار حسابداری',
+            tech: ['React', 'Financial Tools'],
+            category: 'فین‌تک',
+          },
+          {
+            id: 12,
+            title: 'کاربر گروه مگا کارت',
+            description: 'پلتفرم مدیریت کاربران گروه مگا کارت',
+            tech: ['React', 'Financial Tools'],
+            category: 'فین‌تک',
+          },
       ],
     },
     // Skills Page
