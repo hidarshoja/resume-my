@@ -297,7 +297,7 @@ export default function Home() {
               href="mailto:hidarshoja@gmail.com"
               whileHover={{ scale: 1.1, y: -3, rotate: -5 }}
               whileTap={{ scale: 0.9 }}
-              className="p-4 rounded-full glass text-white/60 hover:text-white hover:bg-white/10 transition-all"
+              className="p-4 lg:hidden rounded-full glass text-white/60 hover:text-white hover:bg-white/10 transition-all"
             >
               <FaEnvelope size={24} />
             </motion.a>
