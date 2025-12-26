@@ -40,7 +40,7 @@ export default function About() {
   };
 
   return (
-    <div ref={containerRef} className="min-h-screen py-32 animated-bg grid-pattern">
+    <div ref={containerRef} className="min-h-screen py-32 animated-bg grid-pattern overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -153,14 +153,14 @@ export default function About() {
             <span>{t.about.experience}</span>
           </h2>
 
-          <div className="relative max-w-4xl mx-auto">
+          <div className="relative max-w-4xl mx-auto overflow-x-hidden">
             {/* Animated Timeline Line */}
             <motion.div
               initial={{ height: 0 }}
               whileInView={{ height: '100%' }}
               viewport={{ once: true }}
               transition={{ duration: 1.5, ease: 'easeOut' }}
-              className={`absolute ${isRTL ? 'right-8 md:right-1/2' : 'left-8 md:left-1/2'} top-0 w-1 bg-gradient-to-b from-primary via-accent to-accent-2 rounded-full`}
+              className={`absolute ${isRTL ? 'right-4 md:right-1/2' : 'left-4 md:left-1/2'} top-0 w-1 bg-gradient-to-b from-primary via-accent to-accent-2 rounded-full`}
               style={{ transform: isRTL ? 'translateX(50%)' : 'translateX(-50%)' }}
             />
 
@@ -185,11 +185,11 @@ export default function About() {
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.2, type: 'spring' }}
-                    className={`absolute ${isRTL ? 'right-0' : 'left-8'} md:left-1/2 transform md:-translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-r from-primary to-accent z-10 pulse-glow`}
+                    className={`absolute ${isRTL ? 'right-0' : 'left-4'} md:left-1/2 transform md:-translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-r from-primary to-accent z-10 pulse-glow`}
                   />
 
                   {/* Content Card */}
-                  <div className={`w-full md:w-[calc(50%-3rem)] ${isRTL ? 'mr-20 md:mr-0' : 'ml-20 md:ml-0'}`}>
+                  <div className={`w-full md:w-[calc(50%-3rem)] ${isRTL ? 'pr-8 md:pr-0' : 'pl-8 md:pl-0'}`}>
                     <motion.div
                       whileHover={{ scale: 1.02, y: -5 }}
                       className="group glass rounded-2xl p-6 border border-white/5 hover:border-primary/30 transition-all duration-300"
@@ -247,8 +247,8 @@ export default function About() {
       </div>
 
       {/* Decorative Elements */}
-      <div className="fixed top-1/4 right-0 w-72 h-72 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="fixed bottom-1/4 left-0 w-96 h-96 bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="fixed top-1/4 -right-36 md:right-0 w-72 h-72 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="fixed bottom-1/4 -left-48 md:left-0 w-96 h-96 bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
     </div>
   );
 }
