@@ -159,7 +159,7 @@ export default function Footer() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.8, opacity: 0, y: 20 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="glass rounded-2xl p-6 max-w-sm w-full shadow-2xl"
+              className="glass rounded-2xl p-6 max-w-sm w-full shadow-2xl relative"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
