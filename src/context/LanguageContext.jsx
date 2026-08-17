@@ -21,6 +21,14 @@ export const translations = {
       description: 'Senior Frontend Developer with 5+ years of experience in building high-performance web applications. Expert in React, Next.js, and modern JavaScript frameworks.',
       cta: 'View My Work',
       contact: 'Get In Touch',
+      available: 'Available for work',
+      currently: 'Currently at Atlas Pood · Instructor at Fakooran',
+      punchline: 'I design and ship high-performance interfaces — from FinTech platforms to bilingual enterprise systems that people actually use.',
+      openTo: 'Open to remote & hybrid roles',
+      proofEyebrow: 'Selected highlights',
+      proofTitle: 'Proof, not promises',
+      viewAll: 'See all projects',
+      featured: 'Featured',
     },
     // About Page
     about: {
@@ -255,6 +263,14 @@ export const translations = {
       description: 'توسعه‌دهنده ارشد فرانت‌اند با بیش از ۵ سال تجربه در ساخت برنامه‌های وب با عملکرد بالا. متخصص در React، Next.js و فریم‌ورک‌های مدرن JavaScript.',
       cta: 'مشاهده کارها',
       contact: 'تماس با من',
+      available: 'آماده همکاری',
+      currently: 'اکنون در اطلس پود · مدرس آموزشگاه فکوران',
+      punchline: 'رابط‌هایی می‌سازم که هم سریع‌اند هم دقیق — از پلتفرم‌های فین‌تک تا سیستم‌های سازمانی دوزبانه که واقعاً استفاده می‌شوند.',
+      openTo: 'آماده همکاری حضوری، هیبرید و ریموت',
+      proofEyebrow: 'نقاط برجسته',
+      proofTitle: 'اثبات، نه ادعا',
+      viewAll: 'همه پروژه‌ها',
+      featured: 'ویژه',
     },
     // About Page
     about: {
