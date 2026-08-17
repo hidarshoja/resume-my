@@ -16,11 +16,13 @@ import {
 import { useLanguage } from "../context/LanguageContext";
 
 const EMAIL = "hidarshoja@gmail.com";
+const TELEGRAM = "@H_programmer";
+const TELEGRAM_URL = "https://t.me/H_programmer";
 const PHONE = "+989376228320";
 const PHONE_ALT = "09232996418";
 
 export default function Contact() {
-  const { t, isRTL } = useLanguage();
+  const { t } = useLanguage();
   const [copyModal, setCopyModal] = useState(null);
   const [copied, setCopied] = useState(false);
 
@@ -45,7 +47,6 @@ export default function Contact() {
       color: "#f472b6",
       copyable: true,
       copyText: EMAIL,
-      primary: true,
     },
     {
       key: "github",
@@ -67,9 +68,10 @@ export default function Contact() {
       key: "telegram",
       icon: FaTelegram,
       label: t.contact.info.telegram,
-      value: "@H_programmer",
-      href: "https://t.me/H_programmer",
+      value: TELEGRAM,
+      href: TELEGRAM_URL,
       color: "#0088cc",
+      primary: true,
     },
     {
       key: "rubika",
@@ -178,29 +180,39 @@ export default function Contact() {
                 ))}
               </div>
 
-              <div className="mt-auto rounded-2xl bg-gradient-to-br from-primary/15 to-accent/10 border border-white/10 p-5">
-                <p className="text-accent text-sm mb-1">
+              <div className="mt-auto rounded-2xl bg-gradient-to-br from-primary/15 to-accent/10 border border-white/10 p-5 space-y-3">
+                <p className="text-accent text-sm">
                   {t.contact.preferredContact}
                 </p>
                 <a
-                  href={`mailto:${EMAIL}`}
-                  className="text-white font-semibold text-lg hover:text-accent transition-colors break-all"
+                  href={`tel:${PHONE}`}
+                  className="flex items-center gap-2 text-white font-semibold text-lg hover:text-accent transition-colors"
                 >
-                  {EMAIL}
+                  <FaPhone className="text-accent text-sm shrink-0" />
+                  09376228320
+                </a>
+                <a
+                  href={TELEGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-white font-semibold text-lg hover:text-accent transition-colors"
+                >
+                  <FaTelegram className="text-accent text-sm shrink-0" />
+                  {TELEGRAM}
                 </a>
               </div>
             </div>
           </Motion.aside>
 
           {/* Contact channels */}
-          <div className="lg:col-span-7">
-            <Motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="rounded-3xl glass glow-border p-6 md:p-8"
-            >
-              <h2 className="text-accent text-sm mb-5">{t.contact.channels}</h2>
+          <Motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="lg:col-span-7"
+          >
+            <div className="h-full rounded-3xl glass glow-border p-6 md:p-8">
+              <h2 className="text-accent text-sm mb-4">{t.contact.channels}</h2>
               <div className="grid sm:grid-cols-2 gap-3">
                 {contactChannels.map((channel, index) => (
                   <ContactCard
@@ -211,8 +223,8 @@ export default function Contact() {
                   />
                 ))}
               </div>
-            </Motion.div>
-          </div>
+            </div>
+          </Motion.div>
         </div>
       </div>
 
