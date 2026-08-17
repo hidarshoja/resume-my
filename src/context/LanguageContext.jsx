@@ -241,8 +241,13 @@ export const translations = {
     },
     // Footer
     footer: {
-      copyright: '© 2024 Haider Shoja. All rights reserved.',
+      copyright: '© 2026 Haider Shoja. All rights reserved.',
       madeWith: 'Made with',
+      tagline: 'High-performance interfaces for products people actually use.',
+      ctaTitle: "Let's build something that ships.",
+      ctaButton: 'Start a conversation',
+      explore: 'Explore',
+      connect: 'Connect',
     },
   },
   fa: {
@@ -483,8 +488,13 @@ export const translations = {
     },
     // Footer
     footer: {
-      copyright: '© ۱۴۰۳ حیدر شجاع. تمامی حقوق محفوظ است.',
+      copyright: '© ۱۴۰۵ حیدر شجاع. تمامی حقوق محفوظ است.',
       madeWith: 'ساخته شده با',
+      tagline: 'رابط‌هایی با عملکرد بالا، برای محصولاتی که واقعاً استفاده می‌شوند.',
+      ctaTitle: 'بیایید چیزی بسازیم که به مرحله انتشار برسد.',
+      ctaButton: 'شروع گفتگو',
+      explore: 'مسیرها',
+      connect: 'ارتباط',
     },
   },
 };
