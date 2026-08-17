@@ -128,9 +128,15 @@ export const translations = {
     projects: {
       title: 'My Projects',
       subtitle: 'Portfolio & Case Studies',
+      eyebrow: 'Work that shipped',
       viewLive: 'View Live',
       viewVideo: 'Watch Summary Video',
       viewDetails: 'View Details',
+      viewDemo: 'Watch demo',
+      featuredLabel: 'Featured case',
+      empty: 'No projects in this category',
+      ctaTitle: 'Want something like these for your product?',
+      ctaButton: 'Start a conversation',
       projectsList: [
         {
           id: 1,
@@ -212,7 +218,7 @@ export const translations = {
         {
           id: 12,
           title: 'User Club Mega Card',
-          description: 'Accounting software platform',
+          description: 'User dashboard for the Mega Card loyalty and finance platform',
           tech: ['React', 'Financial Tools'],
           category: 'FinTech',
         },
@@ -381,15 +387,21 @@ export const translations = {
     // Projects Page
     projects: {
       title: 'پروژه‌های من',
-      subtitle: 'نمونه کارها و پروژه‌ها',
+      subtitle: 'برخی از نمونه کارها و پروژه‌ها',
+      eyebrow: 'کارهایی که منتشر شده‌اند',
       viewLive: 'مشاهده سایت',
       viewVideo: 'مشاهده خلاصه ویدیو',
       viewDetails: 'جزئیات بیشتر',
+      viewDemo: 'مشاهده دمو',
+      featuredLabel: 'نمونه ویژه',
+      empty: 'در این دسته پروژه‌ای نیست',
+      ctaTitle: 'برای محصول خودتان هم چنین کاری می‌خواهید؟',
+      ctaButton: 'شروع گفتگو',
       projectsList: [
         {
           id: 1,
           title: 'سایت دوزبانه اطلس پود',
-          description: 'وب‌سایت دوزبانه مدرن (فارسی/انگلیسی) با ادغام API طراحی پرده سه بعدی',
+          description: 'وب‌سایت دوزبانه مدرن (فارسی/انگلیسی) ',
           tech: ['React', 'Bootstrap', 'API Integration'],
           category: 'شرکتی',
         },
