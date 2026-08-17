@@ -127,7 +127,7 @@ export const translations = {
     // Projects Page
     projects: {
       title: 'My Projects',
-      subtitle: 'Portfolio & Case Studies',
+      subtitle: "Some examples of work and projects",
       eyebrow: 'Work that shipped',
       viewLive: 'View Live',
       viewVideo: 'Watch Summary Video',
@@ -228,12 +228,54 @@ export const translations = {
     skills: {
       title: 'Technical Skills',
       subtitle: 'Technologies & Tools I Work With',
+      eyebrow: 'What I bring to the team',
+      coreStack: 'Core stack',
+      strengthsEyebrow: 'Beyond the tools',
+      strengthsTitle: 'Where I add the most value',
+      otherSkills: 'Also experienced with',
+      ctaTitle: 'Want this stack on your next product?',
+      ctaButton: 'View my work',
+      statTools: 'Technologies',
+      statYears: 'Years building',
+      statFocus: 'Primary focus',
       categories: {
         frontend: 'Frontend Development',
         frameworks: 'Frameworks & Libraries',
         styling: 'Styling & UI',
         tools: 'Tools & Others',
       },
+      strengths: [
+        {
+          title: 'Performance engineering',
+          description: 'Fast loads, smooth interactions, and measurable UX wins.',
+        },
+        {
+          title: 'Bilingual systems',
+          description: 'Deep RTL/LTR experience with dynamic content architecture.',
+        },
+        {
+          title: 'Product-grade UI',
+          description: 'Interfaces that feel polished from day one — not just functional.',
+        },
+        {
+          title: 'FinTech & dashboards',
+          description: 'Complex flows, admin panels, and data-heavy frontends.',
+        },
+      ],
+      otherList: [
+        'REST API',
+        'Responsive Design',
+        'UI/UX',
+        'Performance Optimization',
+        'SEO',
+        'PWA',
+        'Web Accessibility',
+        'Cross-Browser Compatibility',
+        'Agile/Scrum',
+        'Team Leadership',
+        'Code Review',
+        'Technical Writing',
+      ],
     },
     // Contact Page
     contact: {
@@ -488,12 +530,54 @@ export const translations = {
     skills: {
       title: 'مهارت‌های فنی',
       subtitle: 'تکنولوژی‌ها و ابزارهایی که با آن‌ها کار می‌کنم',
+      eyebrow: 'آنچه به تیم اضافه می‌کنم',
+      coreStack: 'هسته فنی',
+      strengthsEyebrow: 'فراتر از ابزارها',
+      strengthsTitle: 'بیشترین ارزش من کجاست',
+      otherSkills: 'تجربه همچنین در',
+      ctaTitle: 'این استک را برای محصول بعدی‌تان می‌خواهید؟',
+      ctaButton: 'مشاهده نمونه کارها',
+      statTools: 'تکنولوژی',
+      statYears: 'سال ساخت محصول',
+      statFocus: 'تمرکز اصلی',
       categories: {
         frontend: 'توسعه فرانت‌اند',
         frameworks: 'فریم‌ورک‌ها و کتابخانه‌ها',
         styling: 'استایل و UI',
         tools: 'ابزارها و سایر',
       },
+      strengths: [
+        {
+          title: 'مهندسی عملکرد',
+          description: 'بارگذاری سریع، تعامل روان و بهبود قابل اندازه‌گیری.',
+        },
+        {
+          title: 'سیستم‌های دوزبانه',
+          description: 'تجربه عمیق RTL/LTR و معماری محتوای پویا.',
+        },
+        {
+          title: 'UI در سطح محصول',
+          description: 'رابط‌هایی که از روز اول حرفه‌ای به نظر می‌رسند.',
+        },
+        {
+          title: 'فین‌تک و داشبورد',
+          description: 'فلوهای پیچیده، پنل مدیریت و فرانت‌اند داده‌محور.',
+        },
+      ],
+      otherList: [
+        'REST API',
+        'Responsive Design',
+        'UI/UX',
+        'Performance Optimization',
+        'SEO',
+        'PWA',
+        'Web Accessibility',
+        'Cross-Browser Compatibility',
+        'Agile/Scrum',
+        'Team Leadership',
+        'Code Review',
+        'Technical Writing',
+      ],
     },
     // Contact Page
     contact: {
