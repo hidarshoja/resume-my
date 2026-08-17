@@ -34,7 +34,14 @@ export const translations = {
     about: {
       title: 'About Me',
       subtitle: 'My Journey & Experience',
-      summary: 'Senior Frontend Developer with 5+ years of experience in building high-performance web applications. Expert in React, Next.js, and modern JavaScript frameworks. Proven track record of delivering scalable and maintainable solutions. Strong focus on user experience and performance optimization.',
+      nowBadge: 'Now',
+      focusTitle: 'Focus areas',
+      journey: 'Career path',
+      ctaTitle: 'If this looks like the teammate you need',
+      ctaProjects: 'See selected work',
+      ctaContact: 'Start a conversation',
+      currentRole: 'Currently shipping at Atlas Pood',
+      summary: 'Senior Frontend Developer with 6+ years shipping high-performance web products. I specialize in React and Next.js — bilingual enterprise systems, FinTech platforms, and interfaces that stay fast as they grow. I also train professional developers at Fakooran Institute.',
       achievements: 'Key Achievements',
       achievementsList: [
         {
@@ -241,7 +248,7 @@ export const translations = {
     },
     // Footer
     footer: {
-      copyright: '© 2026 Haider Shoja. All rights reserved.',
+      copyright: '© 2025 Haider Shoja. All rights reserved.',
       madeWith: 'Made with',
       tagline: 'High-performance interfaces for products people actually use.',
       ctaTitle: "Let's build something that ships.",
@@ -281,7 +288,14 @@ export const translations = {
     about: {
       title: 'درباره من',
       subtitle: 'مسیر و تجربیات من',
-      summary: 'توسعه‌دهنده ارشد فرانت‌اند با بیش از ۵ سال تجربه در ساخت برنامه‌های وب با عملکرد بالا. متخصص در React، Next.js و فریم‌ورک‌های مدرن JavaScript. سابقه اثبات شده در ارائه راه‌حل‌های مقیاس‌پذیر و قابل نگهداری. تمرکز قوی بر تجربه کاربری و بهینه‌سازی عملکرد.',
+      nowBadge: 'اکنون',
+      focusTitle: 'تمرکز کاری',
+      journey: 'مسیر حرفه‌ای',
+      ctaTitle: 'اگر دنبال چنین هم‌تیمی هستید',
+      ctaProjects: 'مشاهده نمونه کارها',
+      ctaContact: 'شروع گفتگو',
+      currentRole: 'اکنون در اطلس پود در حال ساخت محصول',
+      summary: 'توسعه‌دهنده ارشد فرانت‌اند با بیش از ۶ سال تجربه در ساخت محصولات وب با عملکرد بالا. متخصص React و Next.js — سیستم‌های سازمانی دوزبانه، پلتفرم‌های فین‌تک، و رابط‌هایی که با رشد محصول سریع می‌مانند. همچنین مدرس برنامه‌نویسی در آموزشگاه فکوران هستم.',
       achievements: 'دستاوردهای کلیدی',
       achievementsList: [
         {
@@ -488,7 +502,7 @@ export const translations = {
     },
     // Footer
     footer: {
-      copyright: '© ۱۴۰۵ حیدر شجاع. تمامی حقوق محفوظ است.',
+      copyright: '© ۱۴۰۴ حیدر شجاع. تمامی حقوق محفوظ است.',
       madeWith: 'ساخته شده با',
       tagline: 'رابط‌هایی با عملکرد بالا، برای محصولاتی که واقعاً استفاده می‌شوند.',
       ctaTitle: 'بیایید چیزی بسازیم که به مرحله انتشار برسد.',
